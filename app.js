@@ -16,6 +16,15 @@ const app = express();
 
 app.use(express.json());
 app.use(helmet());
+
+app.disable('x-powered-by');
+
+// Custom error handler to avoid revealing stack traces
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something went wrong!');
+});
+
 /* 
 
 All json responses for this tasks should follow the pattern:
