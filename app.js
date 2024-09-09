@@ -1,4 +1,6 @@
 import express from "express";
+import helmet from 'helmet';
+
 
 import {
   deleteAstronautById,
@@ -13,7 +15,7 @@ import {
 const app = express();
 
 app.use(express.json());
-
+app.use(helmet());
 /* 
 
 All json responses for this tasks should follow the pattern:
